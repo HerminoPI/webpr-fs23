@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Immediately invoked function expression (IFFE)</title>
+</head>
+<body>
+
+<script>
+
+    /*
+    We are going to radically call functions right after their declaration on the same line!
+    */
+
+    x1 = 0;
+    (() => {
+        x1 = 2;
+        return x1;
+    })();
+    try {
+        document.writeln(x1 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //false
+    //The immediately invoked function expression puts
+    //x1 as 2, therefore overwrites the value
+
+    let x2 = 0;
+    (function two1() {
+        let x2 = 2;
+        return x2;
+    })();
+
+    try {
+        document.writeln(x2 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //the outter variable x2 can be called, and is called in the try block
+    //but the inner variable from function two1, can not be called, because of let it stays inside
+
+    let x3 = 0;
+
+    function two2() {
+        let x3 = 2;
+        return x3;
+    }
+
+    two2();
+
+    try {
+        document.writeln(x3 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //again, the outter variable x3 can be called, and it is called in the try block
+    //but the inner variable x3 from the function two2, can not be called
+
+    let x4 = 0;
+    (() => {
+        let x4 = 2;
+        return x4;
+    })();
+
+    try {
+        document.writeln(x4 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //again no overwritte, because of the global variable block
+
+    let x5 = 0;
+    (function () {
+        let x5 = 2;
+        return x5;
+    })();
+    try {
+        document.writeln(x5 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //again and again, it block, no overwritte
+
+    let x6 = 0;
+    (function () {
+        let x6 = 2;
+        return x6;
+    })();
+
+    try {
+        document.writeln(x6 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //because block
+
+    let x7 = 0;
+
+    function two3() {
+        let x7 = 2;
+        return x7;
+    }();
+
+    try {
+        document.writeln(x7 === 0)
+    } catch (e) {
+        document.false
+    }
+    //false
+    //the function is not declared right
+
+</script>
+
+</body>
+</html>

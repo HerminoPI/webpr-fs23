@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    /*
+    * Scoping
+    */
+    function two1() {
+        x1 = 2;
+        return x;
+    }
+
+    try { //is x in scope?
+        x1;
+        document.writeln(true)
+    } catch (e) {
+        document.writeln(false)
+    }
+    // false
+    // x is not in scope - because it is declared inside
+    //the function two() and is not accessible from the outside
+
+    let x2 = 0;
+
+    function two2() {
+        let x2 = 2;
+        return x2;
+    }
+
+    two2();
+
+    try {
+        x2;
+        document.writeln(x2 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    // true
+    // x is in scope - x is declared outside of the function
+    // and the function is called, and is is thus declared in the global scope
+
+    let x3 = 0;
+
+    function two3() {
+        x3 = 2;
+        return x3;
+    }
+
+    two3()
+
+    try {
+        x3;
+        document.writeln(x3 === 0)
+    } catch (e) {
+        document.writeln(false)
+    }
+    // false
+    // try block tries to chck for x3 === 0
+    // but x3 is declared as 2;
+
+    function two4() {
+        let x4 = 2;
+        return x4;
+    }
+
+    try {
+        x4;
+        document.writeln(true)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //false
+    // function two4 is never called
+    //thus x4 is not declared as a global variable
+
+    function two5() {
+        x5 = 2;
+        return x5;
+    }
+
+    two5();
+
+    try {
+        x5;
+        document.writeln(true)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //function two5 is called
+    //therefore the variable x5 is declared as a global variable
+
+    function two6() {
+        x6 = 2;
+        return x6;
+    }
+
+    two6();
+
+    try {
+        x6;
+        document.writeln(true)
+    } catch (e) {
+        document.writeln(false)
+    }
+    //true
+    //function two6 is called
+    //therefore the variable two6 is declared as a global variable
+
+</script>
+
+
+</body>
+</html>

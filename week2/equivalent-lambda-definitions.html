@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+  /*
+  * here we analyse beta: expansion and reduction as well as alpha-equivalent. SIU
+  */
+
+//1 Given 'id1', is a1One a proper beta expansion of a2One?
+const id1 = x1 => x1;
+
+const a1One = y1 => id1(y1);
+const a2One = y1 => y1;
+<!--
+Check if a1One is a beta reduced form of a1One is equal to a2One, Steps:
+1. declare a new const betaReduced1, that takes the a1One beta reduction
+2. replace the y1 parameter in a1One with the const a2One
+3. expression a1One should result in = id1(a2One)
+
+4. later check with strict equality operator '===' if 'betaReduced1' is
+   equal to a2One.
+5. if 'true' than a1One is a proper beta expansion of a20ne-->
+
+const betaReduced1 = a1One(a2One);
+
+//Checker
+document.writeln(betaReduced1 === a2One);
+
+
+
+
+</script>
+
+</body>
+</html>
