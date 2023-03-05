@@ -5,32 +5,43 @@
     <title>Scope Tests</title>
 </head>
 <body>
-    <script>
+<script>
 
-        // x = 0; // don't do that !
-        // var x = 0;// don't do that !
-        // let x = 0;
-        // (() => {
-        //     // x = 1; // don't do that !
-        //     // var x = 1;// don't do that !
-        //     let x = 1;
-        //     document.writeln(x);
-        //
-        // })();
-        // document.writeln(x);
+    // x = 0; // don't do that !
+    // var x = 0;// don't do that !
+    // let x = 0;
+    // (() => {
+    //     // x = 1; // don't do that !
+    //     // var x = 1;// don't do that !
+    //     let x = 1;
+    //     document.writeln(x);
+    //
+    // })();
+    // document.writeln(x);
 
-        const id    = x => x;
-        const Konst = x => y => x;
+    const id_1 = y => yconst
+    fst = x => y => x
+    // const snd=x=>y=> id (fst(x)(y))
 
-        const Kite  = Konst(id);
+    const snd = fst(id_1) //sol to 6.a
+
+    const x_ = Math.random();
+    const y_ = Math.random();
+    document.writeln(snd(x_)(y_)===y_)
 
 
-        document.writeln( id(id) === id);
-        document.writeln( Konst(id)(undefined) === id);
-        document.writeln( Konst(id)(42) === id);
-        document.writeln( Kite(undefined)(id) === id);
+    const id = x => x;
+    const Konst = x => y => x;
 
-    </script>
+    const Kite = Konst(id);
+
+
+    document.writeln(id(id) === id);
+    document.writeln(Konst(id)(undefined) === id);
+    document.writeln(Konst(id)(42) === id);
+    document.writeln(Kite(undefined)(id) === id);
+
+</script>
 </body>
 </html>
 
