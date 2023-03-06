@@ -3,34 +3,40 @@
 
 const ok = [];
 
+
 // // id
-// ok.push( id(1) === 1 );
-// ok.push( id(id) === id );
-//
-// // konst
-// ok.push( konst(42)(0) === 42 );
-// ok.push( konst(42)(1) === 42 );
-// ok.push( konst(42)(null) === 42 );
-//
-// // kite
-// ok.push( snd(null)(42) === 42 );
-//
+ok.push(id(1) === 1);
+ok.push(id(id) === id);
+
+// konst
+ok.push(konst(42)(0) === 42);
+ok.push(konst(42)(1) === 42);
+ok.push(konst(42)(null) === 42);
+
+// kite
+ok.push(snd(null)(42) === 42);
+
 // // true
-//
-// ok.push( T(1)(0) === 1 );
-// ok.push( F(1)(0) === 0 );
-//
-// // and
-// ok.push( and(F)(F) === F );
-// ok.push( and(T)(F) === F );
-// ok.push( and(F)(T) === F );
-// ok.push( and(T)(T) === T );
-//
-// // or
-// ok.push( or(F)(F) === F );
-// ok.push( or(T)(F) === T );
-// ok.push( or(F)(T) === T );
-// ok.push( or(T)(T) === T );
+//T = true
+ok.push(T(1)(0) === 1);
+//F = false
+ok.push(F(1)(0) === 0);
+
+
+//very fancy if-else: value ? true:false;
+
+
+// and operation
+ok.push(and(F)(F) === F);
+ok.push(and(T)(F) === F);
+ok.push(and(F)(T) === F);
+ok.push(and(T)(T) === T);
+
+// or
+ok.push(or(F)(F) === F);
+ok.push(or(T)(F) === T);
+ok.push(or(F)(T) === T);
+ok.push(or(T)(T) === T);
 
 // flip
 // flip(f)(x)(y) = f(y)(x)
@@ -98,18 +104,16 @@ const ok = [];
 // ok.push( doPay(pal ) === "pal: Dierk");
 
 
-
-
 // test result report
-if ( ok.every( elem => elem) ) {
-    document.writeln("All "+ ok.length +" tests ok.");
+if (ok.every(elem => elem)) {
+    document.writeln("All " + ok.length + " tests ok.");
 } else {
     document.writeln("Not all tests ok! Details:");
-    for (let i = 0; i<ok.length; i++) {
-        if(ok[i]) {
-            document.writeln("Test "+ i +" ok");
+    for (let i = 0; i < ok.length; i++) {
+        if (ok[i]) {
+            document.writeln("Test " + i + " ok");
         } else {
-            document.writeln("Test "+ i +" failed");
+            document.writeln("Test " + i + " failed");
         }
     }
 }
