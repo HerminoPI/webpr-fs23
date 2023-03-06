@@ -20,6 +20,22 @@ const and = p => q => p(q)(p);
 //CHURCH BOOLEAN
 const or = p => q => p(p)(q);
 
+const Pair = firstname => lastname => getter => getter(firstname)(lastname)
+const firstname = konst;
+const lastname = snd;
+
+const Left = x => f => g => f(x);
+const Right = x => f => g => g(x);
+
+//if it is Left than function f will be used, if Right function g
+const either = e => f => g => e(f)(g);
+
+/* eta reduction
+*  const either = e => f => g => e(f);
+*  const either = e => f => f;
+*  const either = id;
+*/
+
 // ----- special -----
 
 const Tuple = n => [

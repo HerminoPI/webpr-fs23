@@ -45,12 +45,12 @@ ok.push(or(T)(T) === T);
 //
 // // beq
 //
-// // Pair
-//
-// const dierk = Pair("Dierk")("König"); // immutable
-// ok.push( dierk(firstname) === "Dierk");
-// ok.push( dierk(lastname)  === "König");
-//
+// Pair - first Data Structure in JavaScript that we come to get to know
+
+const dierk = Pair("Dierk")("König"); // immutable - not possible to change the info - ROCK SOLID
+ok.push(dierk(firstname) === "Dierk");
+ok.push(dierk(lastname) === "König");
+
 // const tdierk = Triple("Dierk")("König")(50); // immutable
 // ok.push( tdierk(tfirstname) === "Dierk");
 // ok.push( tdierk(tlastname)  === "König");
@@ -76,14 +76,14 @@ ok.push(or(T)(T) === T);
 //
 
 
-// const safeDiv = num => divisor =>
-//     divisor === 0
-//     ? Left("schlecht!")
-//     : Right(num / divisor);
-//
-// either( safeDiv(1)(0)  )
-//       ( x => console.error(x))
-//       ( x => console.log(x));
+const safeDiv = num => divisor =>
+    divisor === 0
+        ? Left("schlecht!")
+        : Right(num / divisor);
+
+either(safeDiv(1)(0))
+(x => console.error(x))
+(x => console.log(x));
 
 //
 // const [Cash, CreditCard, Invoice, PayPal, pay] = Choice(4);

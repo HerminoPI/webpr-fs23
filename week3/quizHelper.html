@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+/* Falsch?
+const pair = a => b => f => f(a)(b);
+const fst = p => p(T);
+const snd = p => p(F);
+
+const pairEq = a => b => fst(a) === fst(b) && snd(a) === snd(b);
+
+const pairPlus = a => b => pair (fst(a)+fst(b)) (snd(a) + snd(b));
+
+const oneTwo = pair(1)(2);
+const sum = pairPlus(oneTwo)(oneTwo);
+
+document.writeln(pairEq(sum)(pair(2)(4)));
+*/
+
+/* Falsch?
+const pair = a => b => f => f(a)(b);
+const fst = p => p(T);
+const snd = p => p(F);
+
+const pairEq = a => b => fst(a) === fst(b) && snd(a) === snd(b);
+
+const pairMap = f => p => pair (f(fst(p)))(f(snd(p)));
+
+const oneTwo = pair(1)(2);
+const square = x => x * x;
+const result = pairMap (square)(oneTwo);
+
+document.writeln(pairEq(result)(pair(1)(4)));
+*/
+
+/* Falsch?
+const pair = a => b => f => f(a)(b);
+const fst = p => p(T);
+const snd = p => p(F);
+
+const oneTwo = pair(1,2);
+document.writeln(fst(oneTwo) === 1);
+*/
+
+/* Falsch
+const pair = a => b => f => f(a)(b);
+const fst = p => p(T);
+const snd = p => p(F);
+
+const oneTwo = pair(1)(2);
+document.writeln(fst(oneTwo) === 1);
+*/
+
+/* Falsch
+const pair = a => b => f => f(a)(b);
+const fst = p => p(T);
+const snd = p => p(F);
+
+const oneTwo = pair(1)(2);
+fst(oneTwo) = 0;
+document.writeln(fst(oneTwo) === 0);
+*/
+
+</script>
+
+</body>
+</html>
