@@ -6,8 +6,18 @@
 </head>
 <body>
 <script>
+const id = x => x;
+const konst = x => y => x;
+const snd1 = konst(id);
+//const snd = x => y => y;
+// True returns first value and false returns the second.
+// const T = x => y => x;
+const T = konst;
+//const F = x => y => y;
+const F = snd1;
 
-/* Falsch?
+
+/* TRUE
 const pair = a => b => f => f(a)(b);
 const fst = p => p(T);
 const snd = p => p(F);
@@ -22,7 +32,7 @@ const sum = pairPlus(oneTwo)(oneTwo);
 document.writeln(pairEq(sum)(pair(2)(4)));
 */
 
-/* Falsch?
+/* TRUE
 const pair = a => b => f => f(a)(b);
 const fst = p => p(T);
 const snd = p => p(F);
@@ -47,16 +57,16 @@ const oneTwo = pair(1,2);
 document.writeln(fst(oneTwo) === 1);
 */
 
-/* Falsch
+/*
 const pair = a => b => f => f(a)(b);
 const fst = p => p(T);
 const snd = p => p(F);
 
-const oneTwo = pair(1)(2);
+const oneTwo = pair(1,2);
 document.writeln(fst(oneTwo) === 1);
 */
 
-/* Falsch
+/*
 const pair = a => b => f => f(a)(b);
 const fst = p => p(T);
 const snd = p => p(F);
@@ -65,6 +75,18 @@ const oneTwo = pair(1)(2);
 fst(oneTwo) = 0;
 document.writeln(fst(oneTwo) === 0);
 */
+
+/*
+const pair = a => b => f => f(a)(b);
+const fst = p => p(T);
+const snd = p => p(F);
+
+const oneTwo = pair(1)(2);
+fst(oneTwo) = 0;
+document.writeln(fst(oneTwo) == 0);
+*/
+
+
 
 </script>
 

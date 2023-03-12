@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  const s1 = x => y => z => x; //select 1st arg
+  const s2 = x => y => z => y; //select 2nd arg
+  const s3 = x => y => z => z; //select 3rd arg
+
+  const triple = x => y => z => f => f(x)(y)(z);
+  const a = t => t(s1);
+  const b = t => t(s2);
+  const c = t => t(s3);
+
+  const oneTwoThree = triple(1);
+
+  document.writeln(a(oneTwoThree) === 1);
+
+
+</script>
+
+</body>
+</html>
