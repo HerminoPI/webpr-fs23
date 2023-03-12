@@ -7,71 +7,54 @@
 </head>
 <body>
 <div id="out">Out:</div>
-<div>
-    <button onclick="logAll()">Log</button>
-</div>
+<div><button onclick="logAll()">Log</button></div>
 <pre>
 <script>
 
     const longRunning = x => {
         out.textContent += " ...";
-        setTimeout(_ => out.textContent += " " + x, 1000 * 2);
+        setTimeout( _=> out.textContent += " " + x, 1000 * 2);
         return x;
     };
 
-    /*  // starting state
-      const logAll = () => {
-          console.error("error", longRunning("error"));
-          console.warn("warn", longRunning("warn"));
-          console.info("info", longRunning("info"));
-          console.log("log", longRunning("log"));
-          console.debug("debug", longRunning("debug"));
-      }
-  */
+    // starting state
+    // const logAll = () => {
+    //     console.error("error", longRunning("error"));
+    //     console.warn ("warn",  longRunning("warn") );
+    //     console.info ("info",  longRunning("info") );
+    //     console.log  ("log",   longRunning("log")  );
+    //     console.debug("debug", longRunning("debug"));
+    // }
+
     /* constants */
-    const LEVEL_NONE = -1;
-    const LEVEL_ERROR = 0;
-    const LEVEL_WARN = 1;
-    const LEVEL_INFO = 2;
-    const LEVEL_LOG = 3;
-    const LEVEL_DEBUG = 4;
-    let logLevel = LEVEL_ERROR;
+    const LEVEL_NONE    = -1;
+    const LEVEL_ERROR   =  0;
+    const LEVEL_WARN    =  1;
+    const LEVEL_INFO    =  2;
+    const LEVEL_LOG     =  3;
+    const LEVEL_DEBUG   =  4;
+    let logLevel = LEVEL_NONE;
 
 
-    //the side effect, of something gets calculated before we issue the warning level.
-    //it should not output 5 times the "..." and the other LEVELS.
-    //example if logLevel = LEVEL_ERROR (1), here info, log and debug should not appear as their higher
-
-    /*    // strict version (not working as desired, yet) */
-    const error = lazyArgs => {
-        if (logLevel >= LEVEL_ERROR) console.error(lazyArgs());
-    }
-    const warn = lazyArgs => {
-        if (logLevel >= LEVEL_WARN) console.warn(lazyArgs());
-    }
-    const info = lazyArgs => {
-        if (logLevel >= LEVEL_INFO) console.info(lazyArgs());
-    }
-    const log = lazyArgs => {
-        if (logLevel >= LEVEL_LOG) console.log(lazyArgs());
-    }
-    const debug = lazyArgs => {
-        if (logLevel >= LEVEL_DEBUG) console.debug(lazyArgs());
-    }
-
+/*    // strict version (not working as desired, yet)*/
+    const error = argsF => { if (logLevel >= LEVEL_ERROR) console.error(argsF()); }
+    const warn  = argsF => { if (logLevel >= LEVEL_WARN)  console.warn (argsF()); }
+    const info  = argsF => { if (logLevel >= LEVEL_INFO)  console.info (argsF()); }
+    const log   = argsF => { if (logLevel >= LEVEL_LOG)   console.log  (argsF()); }
+    const debug = argsF => { if (logLevel >= LEVEL_DEBUG) console.debug(argsF()); }
 
     const logAll = () => {
-        error(() => (longRunning("error")));
-        warn(() => (longRunning("warn")));
-        info(() => (longRunning("info")));
-        log(() => (longRunning("log")));
-        debug(() => (longRunning("debug")));
+        error(() => longRunning("error"));
+        warn (() => longRunning("warn") );
+        info (() => longRunning("info") );
+        log  (() => longRunning("log")  );
+        debug(() => longRunning("debug"));
     }
 
-//with this we have created a logging facility, it will come very soon into the IP5 / 6 handbook
 
 </script>
 </pre>
+
 
 
 </body>

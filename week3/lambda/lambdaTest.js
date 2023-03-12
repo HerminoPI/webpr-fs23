@@ -3,40 +3,34 @@
 
 const ok = [];
 
-
-// // id
-ok.push(id(1) === 1);
-ok.push(id(id) === id);
+// id
+ok.push( id(1)  === 1 );
+ok.push( id(id) === id );
 
 // konst
-ok.push(konst(42)(0) === 42);
-ok.push(konst(42)(1) === 42);
-ok.push(konst(42)(null) === 42);
+ok.push( konst(42)(0)    === 42 );
+ok.push( konst(42)(1)    === 42 );
+ok.push( konst(42)(null) === 42 );
 
 // kite
-ok.push(snd(null)(42) === 42);
+ok.push( snd(null)(42) === 42 );
 
-// // true
-//T = true
-ok.push(T(1)(0) === 1);
-//F = false
-ok.push(F(1)(0) === 0);
+// true
 
+ok.push( T(1)(0) === 1 );
+ok.push( F(1)(0) === 0 );
 
-//very fancy if-else: value ? true:false;
-
-
-// and operation
-ok.push(and(F)(F) === F);
-ok.push(and(T)(F) === F);
-ok.push(and(F)(T) === F);
-ok.push(and(T)(T) === T);
+// and
+ok.push( and(F)(F) === F );
+ok.push( and(T)(F) === F );
+ok.push( and(F)(T) === F );
+ok.push( and(T)(T) === T );
 
 // or
-ok.push(or(F)(F) === F);
-ok.push(or(T)(F) === T);
-ok.push(or(F)(T) === T);
-ok.push(or(T)(T) === T);
+ok.push( or(F)(F) === F );
+ok.push( or(T)(F) === T );
+ok.push( or(F)(T) === T );
+ok.push( or(T)(T) === T );
 
 // flip
 // flip(f)(x)(y) = f(y)(x)
@@ -45,12 +39,12 @@ ok.push(or(T)(T) === T);
 //
 // // beq
 //
-// Pair - first Data Structure in JavaScript that we come to get to know
-
-const dierk = Pair("Dierk")("König"); // immutable - not possible to change the info - ROCK SOLID
-ok.push(dierk(firstname) === "Dierk");
-ok.push(dierk(lastname) === "König");
-
+// // Pair
+//
+const dierk = Pair("Dierk")("König"); // immutable
+ok.push( dierk(firstname) === "Dierk");
+ok.push( dierk(lastname)  === "König");
+//
 // const tdierk = Triple("Dierk")("König")(50); // immutable
 // ok.push( tdierk(tfirstname) === "Dierk");
 // ok.push( tdierk(tlastname)  === "König");
@@ -78,12 +72,12 @@ ok.push(dierk(lastname) === "König");
 
 const safeDiv = num => divisor =>
     divisor === 0
-        ? Left("schlecht!")
-        : Right(num / divisor);
+    ? Left("schlecht!")
+    : Right(num / divisor);
 
-either(safeDiv(1)(0))
-(x => console.error(x))
-(x => console.log(x));
+( safeDiv(1)(1)  )
+      ( x => console.error(x))
+      ( x => console.log(x));
 
 //
 // const [Cash, CreditCard, Invoice, PayPal, pay] = Choice(4);
@@ -104,16 +98,18 @@ either(safeDiv(1)(0))
 // ok.push( doPay(pal ) === "pal: Dierk");
 
 
+
+
 // test result report
-if (ok.every(elem => elem)) {
-    document.writeln("All " + ok.length + " tests ok.");
+if ( ok.every( elem => elem) ) {
+    document.writeln("All "+ ok.length +" tests ok.");
 } else {
     document.writeln("Not all tests ok! Details:");
-    for (let i = 0; i < ok.length; i++) {
-        if (ok[i]) {
-            document.writeln("Test " + i + " ok");
+    for (let i = 0; i<ok.length; i++) {
+        if(ok[i]) {
+            document.writeln("Test "+ i +" ok");
         } else {
-            document.writeln("Test " + i + " failed");
+            document.writeln("Test "+ i +" failed");
         }
     }
 }
