@@ -73,6 +73,9 @@
     (val => document.writeln(val === 1));
     */
 
+    const eShow = res => either(res)
+    (msg => (msg))
+    (val => ("Result is: " + val))
 
 </script>
 
