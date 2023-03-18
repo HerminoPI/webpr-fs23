@@ -9,25 +9,28 @@
 
     //provide a function named 'twice'
 
-  //const twice = a => a * 2;
+    const twice = a => a * 2;
 
-  const divides = a => b => b % a === 0; //this works - because a is the divider and b the to be divided
-
-  const join = ((acc, cur) => acc + cur);
+    const divides = a => b => b % a === 0; //this works - because a is the divider and b the to be divided
 
 
-const join = (delimiter) => (acc, cur) => {
-    return
-    ? cur.toString()
-        : `${acc}${delimiter}${cur.toString()}`;
-};
+    /*
+    *  Uses tenerary operator: this allows a short one line expression: condition ? valueIfTrue : valueIfFalse
+    *  The condition is evaluated first, then it is evaluated against True or False
+     */
+
+    //const join = (delimiter) => (acc, cur) =>
+    //  acc === ''
+    //    ? cur.toString()
+    //  : `${acc}${delimiter}${cur.toString()}`;
 
 
+    const join = delimiter => (acc, cur) => acc + '' + delimiter + '' + cur //Es braucht kein true false test im 9f
 
     //test
-    //document.writeln([1, 2, 3].map(twice).toString() === "2,4,6");
-    //document.writeln([1,2,3,4,5,6].filter(divides(3)).toString() === "3,6");
-    document.writeln([1,2,3].reduce(join('-')) === '1-2-3');
+    document.writeln([1, 2, 3].map(twice).toString() === "2,4,6");
+    document.writeln([1, 2, 3, 4, 5, 6].filter(divides(3)).toString() === "3,6");
+    document.writeln([1, 2, 3].reduce(join('-')) === '1-2-3');
 
 </script>
 
