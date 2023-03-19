@@ -21,13 +21,13 @@ const snake = [
 let food = Pair(15)(15);
 
 // function snakeEquals(a, b) { return a.x === b.x && a.y === b.y }
-const pairEq = a => b => undefined; // todo: your code here
+const pairEq = a => b => a(fst) === b(fst) && a(snd) === b(snd); // to compare two pairs or tuples of values.
 
 // Pair + Pair = Pair        // Monoid
-const pairPlus = a => b => undefined; // todo: your code here
+const pairPlus = a => b =>  Pair (a(fst) + b(fst)) (a(snd) + b(snd)); // to combine two pairs or tuples of values by adding their corresponding values.
 
 // Function and Pair = Pair  // Functor
-const pairMap = f => p => undefined; // todo: your code here
+const pairMap = f => pair =>  Pair (f(pair(fst))) (f(pair(snd))); // It allows to apply a function to each element of a pair without having to manually extract each value and create a new pair.
 
 
 function changeDirection(orientation) {
@@ -84,11 +84,11 @@ function nextBoard() {
     const max = 20;
     const oldHead = snake[0];
 
-    const newHead = undefined; // todo: your code here: old head plus direction
-    const head = undefined; // todo: your code here: new head put in bounds
+    const newHead = pairPlus(oldHead)(direction);
+    const head = pairMap(inBounds)(newHead);
 
     const pickRandom = () => Math.floor(Math.random() * max);
-    if (true) {  // todo: have we found any food?
+    if (pairEq(head)(food)) {
         food = Pair(pickRandom())(pickRandom());
     } else {
         snake.pop(); // no food found => no growth despite new head => remove last element
