@@ -8,7 +8,12 @@ function start() {
     const userFunction = document.getElementById('user_function');
     const canvas       = document.getElementById('canvas');
 
-    // todo: how to display?
+    // todo: how to display? //Function takes an array of Strings //important for quiz: sometime working with functions but they also relly on other functions
+    const f = () => Function('x', 'return ' + userFunction.value + ';');
+    display(canvas, f());
+    
+    //on change, either leaving the input field or hitting return
+    userFunction.onchange = evt => display(canvas,f());
 
 }
 

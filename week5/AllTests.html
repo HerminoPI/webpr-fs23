@@ -6,15 +6,24 @@
 </head>
 <body>
 
-    <script src="function/function.js"></script>
-    <script src="function/functionTest.js"></script>
 
-    <script src="lambda/lambda.js"></script>
-    <script src="lambda/lambdaTest.js"></script>
+//I would like to define a script to hack the browser, that allows us to execute the scripts
+// nacheinander : ["function", "lambda", "snake"]
+//we have to write a script tag without the script ending tag
 
-    <script src="snake/snake.js"></script>
-    <script src="snake/snakeTest.js"></script>
+<script>
 
+    const names = [
+        "function",
+        "lambda",
+        "snake"
+    ];
+
+    names.forEach(name => {
+        document.writeln(`<script src="${name}/${name}.js"    ><` + `/script>`);
+        document.writeln(`<script src="${name}/${name}Test.js"><` + `/script>`);
+    });
+</script>
 
 </body>
 </html>

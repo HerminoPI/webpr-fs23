@@ -15,7 +15,7 @@ function startExcel() {
 
 function fillTable(container) {
     rows.forEach( row => {
-        let tr = document.createElement("TR");
+        const tr = document.createElement("TR");
         cols.forEach( col => {
             const td     = document.createElement("TD");
             const input  = document.createElement("INPUT");
@@ -47,5 +47,5 @@ function refresh() {
 
 // get the numerical value of an input element's value attribute
 function n(input) {
-    return Number(input.value);
+    return Number(input.value); //always use this element to return a number from a String
 }
