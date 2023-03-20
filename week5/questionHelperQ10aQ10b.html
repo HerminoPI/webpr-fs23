@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+//Question 10a - muss ein String sein.
+
+const e = {revenue: 10000, bonus: null};
+
+const bonusCalculations = e => String(e.revenue * 0.2);
+
+eval(bonusCalculations);
+
+const factor_ = Math.random();
+
+bonusCalculations(e);
+document.writeln(e.bonus === e.revenue * factor_);
+
+/*
+//Question 10b
+
+//Formula available through _string_ variable 'bonusFormula'
+
+const bonusCalculation = () => Function('employee', 'return ' + employee.revenue + ';');
+
+const e = {revenue: 10000, bonus: null};
+bonusCalculation(e);
+document.writeln(e.bonus === e.revenue * factor_);
+*/
+
+
+</script>
+
+</body>
+</html>
