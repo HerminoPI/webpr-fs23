@@ -66,16 +66,31 @@
             ? Left("cannot divide by 0")
             : Right(num / divisor);
 
-    const result = safeDiv(1)(0)
+    const eShow = safeDiv(1)(0)
 
-    either (result)
+    either (eShow)
     (msg => document.writeln(msg))
     (val => document.writeln(val === 1));
     */
 
-    const eShow = res => either(res)
-    (msg => (msg))
-    (val => ("Result is: " + val))
+    const Left = x => f => g => f(x);
+    const Right = x => f => g => g(x);
+    const either = e => f => g => e(f)(g);
+    const id = x => x;
+
+    const safeDiv = num => divisor =>
+        divisor === 0
+            ? Left("Cannot divide by 0")
+            : Right(num / divisor);
+
+    //maybe result for 9.c. - returns true
+    const eShow = result =>
+        either(result)
+        (msg => msg)
+        (val => "Result is: " + val)
+
+    document.writeln(eShow(safeDiv(1)(0)) === "Cannot divide by 0" && eShow(safeDiv(2)(1)) === "Result is: " + 2);
+
 
 </script>
 

@@ -79,6 +79,12 @@ const safeDiv = num => divisor =>
       ( x => console.error(x))
       ( x => console.log(x));
 
+const result = safeDiv(1)(0)
+
+either (result)
+(msg => document.writeln(msg))
+(val => document.writeln(val === 1));
+
 //
 // const [Cash, CreditCard, Invoice, PayPal, pay] = Choice(4);
 // const cash = Cash ();

@@ -9,29 +9,46 @@
 
 //Question 10a - muss ein String sein.
 
-const e = {revenue: 10000, bonus: null};
+const bonusFormula = "employee.bonus = employee.revenue * 0.2"
+const bonusCalculation = employee => eval(bonusFormula); //this should be the correct solution
 
-const bonusCalculations = e => String(e.revenue * 0.2);
+// const e = {revenue: 10000, bonus: null};
+//
+// const bonusCalculations = e => String(e.revenue * 0.2);
+//
+// eval(bonusCalculations);
+//
+// const factor_ = Math.random();
+//
+// bonusCalculations(e);
+// document.writeln(e.bonus === e.revenue * factor_);
 
-eval(bonusCalculations);
 
-const factor_ = Math.random();
-
-bonusCalculations(e);
-document.writeln(e.bonus === e.revenue * factor_);
-
-/*
 //Question 10b
 
 //Formula available through _string_ variable 'bonusFormula'
 
-const bonusCalculation = () => Function('employee', 'return ' + employee.revenue + ';');
+//const bonusFormula = "employee.revenue * 0.2";
 
+//const bonusCalculation = Function('employee', `employee.bonus = ` + bonusFormula); // this should be the correct solution, as it is only aufgerufen once
+
+//const bonusCalculation = () => Function('employee', 'return ' + employee.revenue + ';');
+
+
+// //done: Solution to be tested.
+// function bonusCalculation(employee, bonusFormula){
+//     const factor_ = 0.01;
+//     const calculateBonus = Function('employee', `return ${bonusFormula};`);
+//     employee.bonus = calculateBonus(employee) * factor_
+// }
+
+
+
+
+//Test case:
 const e = {revenue: 10000, bonus: null};
 bonusCalculation(e);
-document.writeln(e.bonus === e.revenue * factor_);
-*/
-
+document.writeln(e.bonus === e.revenue * 0.2);
 
 </script>
 
