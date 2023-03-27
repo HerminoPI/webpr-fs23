@@ -19,13 +19,13 @@
     *  The condition is evaluated first, then it is evaluated against True or False
      */
 
-    //const join = (delimiter) => (acc, cur) =>
-    //  acc === ''
-    //    ? cur.toString()
-    //  : `${acc}${delimiter}${cur.toString()}`;
+    // const join = (delimiter) => (acc, cur) =>
+    //   acc === ''
+    //     ? cur.toString()
+    //   : `${acc}${delimiter}${cur.toString()}`;
 
 
-    const join = delimiter => (acc, cur) => acc + '' + delimiter + '' + cur; //Es braucht kein true false test im 9f
+    const join = delimiter => (acc, cur) => acc + delimiter + cur; //Es braucht kein true false test im 9f
 
     //test
     document.writeln([1, 2, 3].map(twice).toString() === "2,4,6");

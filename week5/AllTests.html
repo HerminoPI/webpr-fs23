@@ -18,11 +18,27 @@
         "lambda",
         "snake"
     ];
-
     names.forEach(name => {
         document.writeln(`<script src="${name}/${name}.js"    ><` + `/script>`);
         document.writeln(`<script src="${name}/${name}Test.js"><` + `/script>`);
     });
+
+    /*
+    It is also possible to write without any constant declaration,
+    accessing directly on to the array
+
+        //script
+        [
+            "function",
+            "lambda",
+            "snake"
+        ].forEach( name => {
+            document.writeln(`<script src="${name}/${name}.js"    ><` + `/script>`);
+            document.writeln(`<script src="${name}/${name}Test.js"><` + `/script>`);
+        } );
+        //script
+     */
+
 </script>
 
 </body>
