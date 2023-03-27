@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /* Q13
+
+
+    //false
+    const Empty = ( () =>{
+    function Empty() {}
+    return Empty;
+    }) ();
+
+    const empty = Empty;
+
+    document.writeln(empty instanceof Empty);
+
+
+    //Shows true
+    function Empty(){}
+    const empty = new Empty();
+
+    Empty.prototype.answer = 42;
+
+    document.writeln(empty.answer === 42);
+
+    //returns true
+    const Empty = ( () => {
+    function Empty() {}
+    return Empty;
+    }) ();
+
+    const empty = new Empty;
+    const also = new Empty;
+
+    Empty.prototype.answer = 42;
+
+    document.writeln(
+    empty.answer === 42 && also.answer === 42);
+
+    */
+
+    //returns true
+    const Empty = (() => {
+        function Empty() {
+        }
+
+        return Empty;
+    })();
+
+    const empty = new Empty;
+
+    document.writeln(empty instanceof Empty);
+
+
+    /*
+    Q14 - Safe Object construction
+
+
+    //same construction for all choices - FALSE
+    const Person = name => {
+        let age = 0;
+        return {
+            getAge: () => age,
+            setAge: newAge => age = newAge,
+            getName: () => name,
+            setName: newName => name = newName
+        }
+    };
+
+    const me = Person("Myself");
+    me.name = "***";
+    document.writeln(me.getName() === "***");
+
+
+ //Shows TRUE because the getName is called after the left hand side
+ const Person = name => {
+        let age = 0;
+        return {
+            getAge: () => age,
+            setAge: newAge => age = newAge,
+            getName: () => name,
+            setName: newName => name = newName
+        }
+    };
+
+    const me = Person("Myself");
+    me.setName("Sherlock");
+    document.writeln(me.getName() === "Sherlock");
+
+
+
+     //Shows false because not the function is called. only the let
+      const Person = name => {
+        let age = 0;
+        return {
+            getAge: () => age,
+            setAge: newAge => age = newAge,
+            getName: () => name,
+            setName: newName => name = newName
+        }
+    };
+
+    const me = Person("Myself");
+    me.age = 50;
+    document.writeln(me.getAge() === 50);
+
+
+
+    //Shows true because the function is called after the left hand side.
+    const Person = name => {
+        let age = 0;
+        return {
+            getAge: () => age,
+            setAge: newAge => age = newAge,
+            getName: () => name,
+            setName: newName => name = newName
+        }
+    };
+
+    const me = Person("Myself");
+    me.setAge(50);
+    document.writeln(me.getAge() === 50);
+*/
+
+</script>
+
+</body>
+</html>

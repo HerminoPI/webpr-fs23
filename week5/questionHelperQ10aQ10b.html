@@ -9,8 +9,8 @@
 
 //Question 10a - muss ein String sein.
 
-const bonusFormula = "employee.bonus = employee.revenue * 0.2"
-const bonusCalculation = employee => eval(bonusFormula); //this should be the correct solution
+//const bonusFormula = "employee.bonus = employee.revenue * 0.2"
+//const bonusCalculation = employee => eval(bonusFormula); //this should be the correct solution
 
 // const e = {revenue: 10000, bonus: null};
 //
@@ -28,9 +28,9 @@ const bonusCalculation = employee => eval(bonusFormula); //this should be the co
 
 //Formula available through _string_ variable 'bonusFormula'
 
-//const bonusFormula = "employee.revenue * 0.2";
+const bonusFormula = "employee.revenue * 0.2";
 
-//const bonusCalculation = Function('employee', `employee.bonus = ` + bonusFormula); // this should be the correct solution, as it is only aufgerufen once
+const bonusCalculation = Function('employee', `return employee.bonus = ` + bonusFormula); // this should be the correct solution, as it is only aufgerufen once
 
 //const bonusCalculation = () => Function('employee', 'return ' + employee.revenue + ';');
 
