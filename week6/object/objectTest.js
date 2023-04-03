@@ -1,36 +1,40 @@
 // requires object.js
 
-(() => {
+( () => {
     const ok = [];
 
     const myObject = {
-        a: 1,
-        //foo : function() { return this.a }
-        foo() {
-            return this.a
-        }              // syntactic sugar
+        a   : 1,
+        // foo : function() { return this.a }
+        foo() { return this.a }              // syntactic sugar
     };
     ok.push(myObject.foo() === 1);
 
-    const myFunctions = [myObject.foo];  //we put it into an array and store it
-    ok.push(myFunctions[0]() !== 1);        // do functions capture "this" in their scope ? No in this case not
+    const myFunctions = [ myObject.foo ];
+    ok.push(myFunctions[0]() !== 1);        // do functions capture "this" in their scope ?
+    ok.push(myFunctions[0]() === undefined);
 
-    function outer(callback) {
+    myFunctions.a = 2;                      // "this" refers to the array
+    ok.push(myFunctions[0]() === 2);
+
+
+    function outer( callback ) {
         const a = 2;
-        return callback(); // on the left hand side of the delegate there is no callback: this.callback(), don't use this "this"
+        return callback();
     }
-
-    function inner() {
+    function inner( ) {
         const a = 3;
         return this.a;
     }
+    ok.push(outer( inner ) === undefined);          // guess what
+    ok.push(outer( inner ) !== 2);
+    ok.push(outer( inner ) !== 3);
 
-    // ok.push(outer( inner ) !== 2);          // guess what - this one is undefined
-    // ok.push(outer( inner ) !== 3);           //this one is undefined
-    ok.push(outer(inner) === undefined);
+    window.a = 4;                           // global scope
+    ok.push(outer( inner ) === 4);
 
     report("this-is-an-issue", ok);
-})(); //we create a function and immediately call the expression IIFE
+}) ();
 
 
 // This is kind of a silly variant for encoding objects that makes
@@ -40,41 +44,38 @@
 // Forgetting to "instantiate" with "new" will cause all kinds of
 // trouble.
 
-(() => {
+( () => {
     const ok = [];
 
     function Person(first, last) {
         this.firstname = first;
         this.lastname = last;
-        this.getName = function () {
-            return this.firstname + " " + this.lastname
-        };
+        this.getName = function() { return this.firstname + " "  + this.lastname };
         return this;
     }
 
     // remember: calling a function retains the scope
 
     const good = Person("Good", "Boy");      // "accidentally" forgot the "new"
-    ok.push(good.getName() === "Good Boy");
+    ok.push( good.getName() === "Good Boy");
 
     const other = Person("Other", "Boy");
     ok.push(other.getName() === "Other Boy");
-    ok.push(good.getName() === "Other Boy"); // OOPS! We have accidentally overwritten the good boy.
-                                             //Because we have no new Object, so we have overwritten the other object
+    ok.push(good.getName()  === "Other Boy"); // OOPS! We have accidentally overwritten the good boy.
 
     ok.push(false === good instanceof Person); // they do not share the prototype
 
     const good2 = new Person("Good", "Boy"); // one way or the other we have to create a "new" object!
-    ok.push(good2.getName() === "Good Boy");
+    ok.push( good2.getName() === "Good Boy");
 
     const other2 = new Person("Other", "Boy");
     ok.push(other2.getName() === "Other Boy");
-    ok.push(good2.getName() === "Good Boy"); // retained
+    ok.push(good2.getName()  === "Good Boy"); // retained
 
     ok.push(good2 instanceof Person);   // now they do
 
     report("object-silly-scope", ok);
-})();
+}) ();
 
 // Using object literals as a replacement for functions
 // is super dynamic, keeps "methods" close to their data,
@@ -82,16 +83,14 @@
 // (unless advanced use with Object.create)
 // Also: use of "this" can lead to surprises.
 
-(() => {
+( () => {
     const ok = [];
 
     const good = {
-        firstname: "Good",
-        lastname: "Boy",
+        firstname : "Good",
+        lastname  : "Boy",
         // must use "this" or type error, cannot use arrow function!
-        getName: function () {
-            return this.firstname + " " + this.lastname
-        }
+        getName   : function() { return this.firstname + " "  + this.lastname }
     };
 
     ok.push(good.getName() === "Good Boy");
@@ -103,31 +102,29 @@
     // change value
     other.firstname = "Other";
     ok.push(other.getName() === "Other Boy");
-    ok.push(good.getName() === "Other Boy");
+    ok.push(good.getName()  === "Other Boy");
 
     const store = {
-        accessor: good.getName  // when we store a reference elsewhere
+        accessor : good.getName  // when we store a reference elsewhere
     };
-    ok.push(store.accessor() === "undefined undefined"); // OOPS!
+    ok.push(store.accessor()  === "undefined undefined"); // OOPS!
 
 
     report("object-literal", ok);
-})();
+}) ();
 
 // Variant that doesn't need to be called with "new"
 // since a new object is created with ever "ctor" call.
 
-(() => {
+( () => {
     const ok = [];
 
     function OpenPerson(first, last) {
         return {
-            firstname: first,
-            lastname: last,
+            firstname : first,
+            lastname  : last,
             // must use "this" or type error, cannot use arrow function!
-            getName: function () {
-                return this.firstname + " " + this.lastname
-            }
+            getName   : function() { return this.firstname + " "  + this.lastname }
         }
     }
 
@@ -141,17 +138,17 @@
     // change value
     other.firstname = "Other";
     ok.push(other.getName() === "Other Boy");
-    ok.push(good.getName() === "Other Boy");
+    ok.push(good.getName()  === "Other Boy");
 
     report("object-self-new", ok);
-})();
+}) ();
 
 // A safe version that makes use of the fact that closure
 // scope is safe from manipulation.
 // Needs no "this"!
 // Trying to change the state fails silently.
 
-(() => {
+( () => {
     const ok = [];
 
     function Person(first, last) {
@@ -159,7 +156,7 @@
         const lastname = last;
         return {
             // cannot use "this" as it is undefined
-            getName: () => firstname + " " + lastname
+            getName   : () => firstname + " " + lastname
         }
     }
 
@@ -172,102 +169,101 @@
     ok.push(good.getName() === "Good Boy"); // change silently swallowed, expected: "Bad Boy"
 
     report("object-failed", ok);
-})();
+}) ();
 
 // A safe version that makes use of the fact that closure
 // scope is safe from manipulation.
 // Needs no "this"!
 // Creates no "type".
 
-(() => {
+( () => {
     const ok = [];
 
     function Person(first, last) {
         const firstname = first;      // optional, see distinct2
         const lastname = last;
         return {
-            getName: () => firstname + " " + lastname
+            getName : () => firstname + " " + lastname
         }
     }
 
     const good = Person("Good", "Boy");
-    const bad = Person("Bad", "Boy");     // distinct new instance
+    const bad  = Person("Bad", "Boy");     // distinct new instance
 
     ok.push(good.getName() === "Good Boy");
-    ok.push(bad.getName() === "Bad Boy");
+    ok.push(bad.getName()  === "Bad Boy" );
 
     good.getName = () => "changed";
     ok.push(good.getName() === "changed");  // change one instance doesn't change the other
-    ok.push(bad.getName() === "Bad Boy");
+    ok.push(bad.getName()  === "Bad Boy" );
 
-    ok.push(!Person.prototype.isPrototypeOf(good)); // they do not even share the same prototype
-    ok.push(!Person.prototype.isPrototypeOf(bad));
+    ok.push(! Person.prototype.isPrototypeOf(good)); // they do not even share the same prototype
+    ok.push(! Person.prototype.isPrototypeOf(bad));
 
     ok.push(false === good instanceof Person); // good is not a Person!
-    ok.push("object" === typeof good);
+    ok.push("object" === typeof good );
 
 
     report("object-distinct", ok);
-})();
+}) ();
 
 // Version of "distinct" that makes use of the closure scope for arguments
-(() => {
+( () => {
     const ok = [];
 
     function Person(first, last) { // closure scope for arguments
         return {
-            getName: () => first + " " + last
+            getName : () => first + " " + last
         }
     }
 
     const good = Person("Good", "Boy");
-    const bad = Person("Bad", "Boy");     // distinct new instance
+    const bad  = Person("Bad", "Boy");     // distinct new instance
 
     ok.push(good.getName() === "Good Boy");
-    ok.push(bad.getName() === "Bad Boy");
+    ok.push(bad.getName()  === "Bad Boy" );
 
     good.getName = () => "changed";
     ok.push(good.getName() === "changed");  // change one instance doesn't change the other
-    ok.push(bad.getName() === "Bad Boy");
+    ok.push(bad.getName()  === "Bad Boy" );
 
-    ok.push(!Person.prototype.isPrototypeOf(good)); // they do not even share the same prototype
-    ok.push(!Person.prototype.isPrototypeOf(bad));
+    ok.push(! Person.prototype.isPrototypeOf(good)); // they do not even share the same prototype
+    ok.push(! Person.prototype.isPrototypeOf(bad));
 
     ok.push(false === good instanceof Person); // good is not a Person!
-    ok.push("object" === typeof good);
+    ok.push("object" === typeof good );
 
 
     report("object-distinct2", ok);
-})();
+}) ();
 
 // Standard Typescript way of creating objects (unless with => syntax)
 // Still dynamic: instance and "class" (prototype) can change at runtime.
-(() => {
+( () => {
     const ok = [];
 
-    const Person = (() => {                // lexical scope for construction
+    const Person = ( () => {                // lexical scope for construction
         function Person(first, last) {      // constructor, setting up the binding
             this.firstname = first;
-            this.lastname = last;
+            this.lastname  = last;
         }
-
-        Person.prototype.getName = function () {  // functions are shared through the prototype // "=>" not allowed!
+        Person.prototype.getName = function() {  // functions are shared through the prototype // "=>" not allowed!
             return this.firstname + " " + this.lastname;
         };
         return Person;
-    })(); // IIFE
+    }) (); // IIFE
 
     const good = new Person("Good", "Boy");    // now it requires "new"
-    const bad = new Person("Bad", "Boy");     // distinct new instance
+    const bad  = new Person("Bad", "Boy");     // distinct new instance
 
     ok.push(good.getName() === "Good Boy");    // without "new" it throws TypeError
-    ok.push(bad.getName() === "Bad Boy");
+    ok.push(bad.getName()  === "Bad Boy" );
 
     ok.push(good.firstname === "Good");        // the function scope is still accessible for manipulation
 
     good.getName = () => "changed";
     ok.push(good.getName() === "changed");  // one can still change a single instance
-    ok.push(bad.getName() === "Bad Boy");
+    ok.push(bad.getName()  === "Bad Boy" );
 
     ok.push(Person.prototype.isPrototypeOf(good)); // Now they share the same prototype
     ok.push(Person.prototype.isPrototypeOf(bad));
@@ -275,11 +271,11 @@
     // new functions get shared
     Person.prototype.secret = () => "top secret!";
     ok.push(good.secret() === "top secret!");
-    ok.push(bad.secret() === "top secret!");
+    ok.push(bad.secret()  === "top secret!");
 
-    ok.push(good instanceof Person === true);
-    ok.push(good instanceof Function === false); // why this ??? It is not an instanceof Function
-    ok.push(good instanceof Object === true);
+    ok.push(good instanceof Person   === true);
+    ok.push(good instanceof Function === false); // why this ???
+    ok.push(good instanceof Object   === true);
 
     report("object-prototype", ok);
-})();
+}) ();
