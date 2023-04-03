@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    /* returns TRUE - because the function is declared inside of the class
+    class Person{
+    isCool() {return this.name.length > 3};
+    }
+    const p = new Person();
+    p.name = "Dierk";
+    document.writeln(p.isCool());
+  */
+
+    /* Does not WORK in giving a RETURN Statement
+        class Person {
+            constructor(name) {
+                this.name = name;
+            }
+
+            isCool() {
+                return this.name.length > 3
+            };
+        }
+        const p = new Person("Joe");
+        p.isCool() = () => true;
+        document.writeln(p.isCool());
+    */
+
+    /*
+    class Person {
+        constructor(name) {
+            this.name = name
+        }
+
+        isCool() {
+            return name === 'Dierk'
+        };
+    }
+
+    const p = new Person("Dierk");
+    document.writeln(p.isCool());
+    */
+
+    /* returns TRUE because the Person.prototype is accessed
+        class Person{
+        constructor(name) {
+        this.name = name;
+        }isCool(){return this.name.length > 3};}
+        const p = new Person("Joe");
+        Person.prototype.isCool = () => true;
+        document.writeln(p.isCool());
+        */
+
+    /*
+    class Person{
+        constructor(name) {
+            this.name = name;
+        }isCool(){return this.name.length > 3};
+    }
+    const p = new Person("Dierk");
+    const joe = {
+    name : "joe",
+    cool: p.isCool};
+    document.writeln(p.name === "Dierk");
+*/
+
+    /*
+      class Person {
+
+            constructor(name) {
+                this.name = name;
+            }
+
+            isCool() {
+                return this.name.length > 3
+            };
+        }
+        const p = new Person("Dierk");
+        document.writeln(p.name === "Dierk");
+    */
+
+    /* Does not return anything
+    class Person {
+
+        constructor(name) {
+            this.name = name;
+        }
+
+        isCool() {
+            return this.name.length > 3
+        };
+    }
+
+    const p = new Person("Joe");
+    p.prototype.isCool = () => true;
+    document.writeln(p.isCool());
+ */
+
+    //---------------------------------------------------------
+    //Q16
+
+    /* returns TRUE
+    class Person {}
+    class Student extends Person {}
+    const s = new Student();
+
+    document.writeln(s instanceof Student);
+    */
+
+    /* return TRUE
+    class Person{}
+    const p = {};
+    Object.setPrototypeOf(p, Person.prototype); // possible solution for the to follow Questions
+
+    document.writeln(p instanceof Person);
+    */
+
+    /* returns TRUE
+    class Person{}
+    class Student{}
+    const s = new Student();
+    Object.setPrototypeOf(Student.prototype, Person.prototype);
+    document.writeln(s instanceof Person);
+     */
+
+    /*
+     class Person{}
+     class Student{}
+     const s = new Student();
+     Object.setPrototypeOf(Student, Person);
+     document.writeln(s instanceof Person);
+    */
+
+    /*
+    class Person{}
+    const p = {};
+    Object.setPrototypeOf(p, Person);
+
+    document.writeln(p instanceof Person);
+    */
+
+    /* Does not return ANYTHING
+    class Person {
+    }
+
+    class Student {
+    }
+
+    const s = new Student();
+    Object.setPrototypeOf(s, Student.prototype);
+    document.writeln(p instanceof Person);
+*/
+
+/* returns TRUE
+class Person{
+constructor(name){
+this.name = name;}
+isCool(){return this.name.length > 3};}
+
+const p = new Person("Dierk");
+document.writeln(p instanceof Person);
+*/
+
+
+</script>
+
+</body>
+</html>
