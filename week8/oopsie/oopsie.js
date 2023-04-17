@@ -11,6 +11,23 @@
 // 
 
 
+/**
+ * @typedef PlayerType
+ * @property { () => Number }                getFallbackIndex
+ * @property { () => Number }                getProgressIndex
+ * @property { () => String }                geName
+ * @property { (stride: Number) => void }    proceed  - changes the progess index
+ * @property { () => void }                  turn     - changes the fallback index
+ * @property { () => void }                  fallback - changes the progess index
+ */
+
+/**
+ * @param { !String } name - should be unique
+ * @returns { PlayerType }
+ * @constructor
+ */
+
+
 const Player = name => {  // name must be either "Dierk" or "Florian"
     let fallbackIndex = 0;
     let progressIndex = 0;
