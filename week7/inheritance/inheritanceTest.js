@@ -87,7 +87,7 @@
             work:    () => worklog.push(worker.work())
         };
 
-        Object.setPrototypeOf(result, Person.prototype); // Set the prototype of result to Person.prototype
+        Object.setPrototypeOf(result, Person.prototype);
 
         return result
     }
