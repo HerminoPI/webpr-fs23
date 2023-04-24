@@ -110,24 +110,32 @@
     document.writeln(todo.isDone());
    */
 
-/*
-    function Todo(text, done) {
-        function check() {
-            done = true
-        }
+    /*
+        function Todo(text, done) {
+            function check() {
+                done = true
+            }
 
-        return {
-            getText: () => text,
-            isDone: () => done,
-            check: check
+            return {
+                getText: () => text,
+                isDone: () => done,
+                check: check
+            }
         }
+        let todo = Todo("buy milk", false);
+        todo.check();
+        document.writeln(todo.isDone());
+    */
+
+    //Q18 ------------------------------------------------
+
+    function handle(callback) {
+        const result = [];
+        callback(result);
+        return result;
     }
-    let todo = Todo("buy milk", false);
-    todo.check();
-    document.writeln(todo.isDone());
-*/
 
- //Q18 ------------------------------------------------
+    document.writeln(handle(it  => it.push(1)).length === 1)
 
 
 

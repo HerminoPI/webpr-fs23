@@ -144,24 +144,24 @@
     document.writeln(s instanceof Person);
     */
 
-   /* SHOWS TRUE
-    class Person {
-        constructor(name) {
-            this.name = name;
-        }
-        isCool() {return this.name.length > 3};
-    }
-    const p = new Person("Dierk");
+    /* SHOWS TRUE
+     class Person {
+         constructor(name) {
+             this.name = name;
+         }
+         isCool() {return this.name.length > 3};
+     }
+     const p = new Person("Dierk");
 
-    document.writeln(p instanceof Person);
-    */
+     document.writeln(p instanceof Person);
+     */
 
-   /* SHOWS FALSE
-    class Person{}
-    const p = { };
-    Object.setPrototypeOf(p, Person);
-    document.writeln(p instanceof Person);
-    */
+    /* SHOWS FALSE
+     class Person{}
+     const p = { };
+     Object.setPrototypeOf(p, Person);
+     document.writeln(p instanceof Person);
+     */
 
     /*SHOWS TRUE
     class Person{}
@@ -179,6 +179,27 @@
     document.writeln(s instanceof Student);
     */
 
+
+    Array.prototype.eq = function (ys) {
+        if (this.length !== ys.length) {
+            return false;
+            for (let i = 0; i < this.length; i++) {
+                if (this[i] !== ys [i])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
+    Function.prototype.then = function(func2){
+    const func1 = this;
+    return x => func2(func1);
+    }
 
 
 
