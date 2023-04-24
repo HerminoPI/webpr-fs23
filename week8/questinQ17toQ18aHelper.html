@@ -7,7 +7,127 @@
 <body>
 <script>
 
+    //QUESTION 17 -----------------------------------
 
+    /* SHOWS TRUE
+    function Todo(text) {
+        let done = false;
+        const check = () => done = true;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: check
+        }
+    }
+    let todo = new Todo("buy milk");
+    todo.check();
+    document.writeln(todo.isDone());
+    */
+
+    /* SHOWS FALSE
+    function Todo(text) {
+        let done = false;
+        const check = () => this.done = true;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: check
+        }
+    }
+    let todo = Todo("buy milk");
+    todo.check();
+    document.writeln(todo.isDone());
+    */
+
+    /* Shows TRUE
+    function Todo(text) {
+        let done = false;
+        const check = () => done = true;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: check
+        }
+    }
+    let todo = Todo("buy milk");
+    todo.check();
+    document.writeln(todo.isDone());
+    */
+
+    /* SHOWS TRUE
+    function Todo(text) {
+        let done = false;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: () => done = true
+        }
+    }
+    let todo = Todo("buy milk");
+    todo.check();
+    document.writeln(todo.isDone());
+    */
+
+    /* SHOW TRUE
+    function Todo(text) {
+        let done = false;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: done = true
+        }
+    }
+    let todo = Todo("buy milk");
+    todo.check();
+    document.writeln(todo.isDone());
+    */
+
+    /*
+    function Todo(text) {
+        const done = false;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: () => done = true
+        }
+    }
+    let todo = Todo("buy milk");
+    todo.check();
+    document.writeln(todo.isDone());
+    */
+
+    /* RETURNS TRUE
+    function Todo(text, done) {
+        const check = () => done = true;
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: check
+        }
+    }
+    let todo = Todo("buy milk", false);
+    todo.check();
+    document.writeln(todo.isDone());
+   */
+
+/*
+    function Todo(text, done) {
+        function check() {
+            done = true
+        }
+
+        return {
+            getText: () => text,
+            isDone: () => done,
+            check: check
+        }
+    }
+    let todo = Todo("buy milk", false);
+    todo.check();
+    document.writeln(todo.isDone());
+*/
+
+ //Q18 ------------------------------------------------
 
 
 
