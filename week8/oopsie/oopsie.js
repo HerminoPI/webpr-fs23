@@ -10,25 +10,22 @@
 //   turn()          // cash in your win, update fallback position for next turn
 // 
 
-
 /**
  * @typedef PlayerType
- * @property { () => Number }                getFallbackIndex
- * @property { () => Number }                getProgressIndex
- * @property { () => String }                geName
- * @property { (stride: Number) => void }    proceed  - changes the progess index
- * @property { () => void }                  turn     - changes the fallback index
- * @property { () => void }                  fallback - changes the progess index
+ * @property { () => Number } getFallbackIndex
+ * @property { () => Number } getProgressIndex
+ * @property { () => String } getName
+ * @property { (Number) => void } proceed   - side effect: changes the progressIndex
+ * @property { () => void } turn            - side effect: the other player is to move
+ * @property { () => void } fallback        - side effect: the progress return to the last fallback position
  */
 
 /**
- * @param { !String } name - should be unique
- * @returns { PlayerType }
+ * @param { "Dierk" | "Florian" } name - must be either "Dierk" or "Florian"
+ * @return { PlayerType }
  * @constructor
  */
-
-
-const Player = name => {  // name must be either "Dierk" or "Florian"
+const Player = name => {
     let fallbackIndex = 0;
     let progressIndex = 0;
     return {
@@ -80,4 +77,8 @@ function display() {
     progressField.setAttribute("CLASS", "field progress");
 }
 
-player = Player("One");
+/**
+ *
+ * @type {PlayerType}
+ */
+player = Player("Dierk");
