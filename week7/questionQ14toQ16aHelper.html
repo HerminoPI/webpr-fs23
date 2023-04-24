@@ -163,13 +163,13 @@
      document.writeln(p instanceof Person);
      */
 
-    /*SHOWS TRUE
+
     class Person{}
     class Student extends Person {}
     const s = new Student();
 
     document.writeln(s instanceof Person);
-    */
+
 
     /* SHOWS FALSE
     class Person{}
@@ -179,28 +179,57 @@
     document.writeln(s instanceof Student);
     */
 
-
-    Array.prototype.eq = function (ys) {
-        if (this.length !== ys.length) {
+/*
+    Array.prototype.eq = function (other) {
+        if (this.length !== other.length) {
             return false;
-            for (let i = 0; i < this.length; i++) {
-                if (this[i] !== ys [i])
-                {
-                    return false;
-                }
+        }
+        for (let i = 0; i < this.length; i++) {
+            if (this[i] !== other [i]) {
+                return false;
             }
         }
         return true;
     }
 
+*/
+
+    /*
+    // Define the test arrays
+    //given
+    xs1 = [1, 2, 3, 4, 5]
+    ys1 = [1, 2, 3, 4, 5]
+
+    xs2 = [1, 2, 3]
+    ys2 = [3, 4, 5]
+
+    xs3 = [1, 2, 3]
+    ys3 = [1, 2, 3]
+
+    xs4 = [3, 4, 5]
+    ys4 = [3, 4, 5]
+
+    // Test the eq function
+    document.writeln(xs1.eq(ys1) && !xs2.eq(ys2) && xs3.eq(ys3) && !xs3.eq(ys4) && !xs4.eq(ys3))
+    */
 
 
+        Function.prototype.then = function(function2){
+        const function1 = this;
+        return x => function2(function1(x));
+        }
 
-    Function.prototype.then = function(func2){
-    const func1 = this;
-    return x => func2(func1);
-    }
+const inc = x => x + 1;
+document.writeln(String(inc.then(inc) (1) === 3));
 
+/*
+let add_ = 5;
+const add = x => x + add_;
+let factor_ = 2;
+const mult = x => x * factor_;
+
+document.writeln(add.then(mult).then(add) (1) === (1+add_) * factor_ + add_);
+*/
 
 
 </script>

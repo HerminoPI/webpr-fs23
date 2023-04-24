@@ -129,15 +129,89 @@
 
     //Q18 ------------------------------------------------
 
+    /*
+        function handle(callback) {
+            const result = [];
+            callback(result);
+            return result;
+        }
+
+        document.writeln(handle(it => it.push(1)).length === 1);
+    */
+
+    /* RETURNS TRUE
+     function handle(callback) {
+         const result = [];
+         callback(result);
+         callback(result);
+         return result;
+     }
+
+     document.writeln(handle(it => it.push(1)).length === 2);
+     */
+
+    /* RETURNS TRUE
+    function handle(count, callback) {
+        const result = [];
+        for (let i = 0; i < count; i++) {
+            callback(result);
+        }
+        return result;
+    }
+    document.writeln(handle(3, it => it.push(1)).length === 3);
+    */
+
+
+    /* RETURNS TRUE
+    function handle(callback){
+    return callback([]);}
+
+    document.writeln(handle(it => {it.push(1); return it;}).length === 1);
+    */
+
+    /* returns false
+    function handle(callback){
+    const result = [];
+    callback(result);
+    return result;
+    }
+    let it = [];
+    document.writeln(handle(it.push(1)).length === 1)
+    */
+
+    /*
     function handle(callback) {
         const result = [];
         callback(result);
         return result;
     }
 
-    document.writeln(handle(it  => it.push(1)).length === 1)
+    document.writeln(handle(it.push(1)).length === 1)
+    */
+
+function handle(callback){
+const result = [];
+callback(result);
+return result;
+}
+let it = [];
+document.writeln(handle( () => it.push(1)).length === 1)
 
 
+    //Q18a
+    /*
+        const failSafe = def => callback => arg => {
+            try {
+                return callback(arg);
+            }
+            catch (e) {
+                return def;}};
+
+    const doError = x => {throw new Error()};
+    const errorCount = failSafe (1) (doError);
+
+    document.writeln(failSafe (false) (true) && failSafe (true) (doError) (null) && errorCount(null) === 1);
+    */
 
 </script>
 </body>
