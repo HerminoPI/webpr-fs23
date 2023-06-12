@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    const door = {open: false};
+
+    const open = door => {
+        if(door.open){
+        return "already open";}
+        door.open = true;
+        return "open";
+    };
+
+    document.write("Door is " );
+    document.writeln(open(door) || "closed");
+
+
+</script>
+
+</body>
+</html>
